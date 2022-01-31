@@ -31,7 +31,7 @@ jobs:
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v2
         with:
-           fromTag: v1.0.0
+           fromTag: v1.8.2
            toTag: ${{ steps.tag_version.outputs.latesttag }}
           # configuration: "configuration.json"
         env:
