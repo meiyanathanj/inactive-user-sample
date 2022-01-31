@@ -23,3 +23,4 @@ uses: actions/inactive-user-sample@v1.0
 with:
   token: 'token'
   orgs-name: 'internal-test'
+test
