@@ -36,7 +36,7 @@ jobs:
            configuration: configs/configuration_complex.json
            owner: mikepenz
            repo: MaterialDrawer
-           fromTag: v1.8.2
+           fromTag: v2.0.1
            toTag: ${{ steps.tag_version.outputs.latesttag }}
            token: ${{ secrets.GITHUB_TOKEN }}
         env:
