@@ -34,8 +34,8 @@ jobs:
            # fromTag: v1.8.2
            # toTag: ${{ steps.tag_version.outputs.latesttag }}
            configuration: configuration_complex.json
-           owner: mikepenz
-           repo: MaterialDrawer
+           owner: meiyanathanj
+           repo: inactive-user-sample
            fromTag: v2.0.1
            toTag: ${{ steps.tag_version.outputs.latesttag }}
            token: ${{ secrets.GITHUB_TOKEN }}
