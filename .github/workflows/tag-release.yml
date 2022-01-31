@@ -1,0 +1,57 @@
+name: tag-release
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g. v0.1.0)'
+        required: true
+      message:
+        description: 'Tag message'
+        required: true
+jobs:
+  build:
+    name: Create Tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Version Generate
+        id: tag_version
+        uses: meiyanathanj/create-tag@v1.1.19
+        with: 
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: ${{github.event.inputs.version}}
+          message: ${{github.event.inputs.message}}
+      
+      - name: Build Changelog
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v2
+        with:
+           fromTag: v1.0.0
+           toTag: ${{ steps.tag_version.outputs.latesttag }}
+          # configuration: "configuration.json"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build Changelog output
+        run: echo "${{ steps.github_release.outputs.changelog }}" 
+          
+      - name: Create a Github Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.tag_version.outputs.latesttag }}
+          release_name: Release ${{ steps.tag_version.outputs.latesttag }}
+          body: ${{ steps.github_release.outputs.changelog }}
+
+     
+      - name: Checking Result
+        run: |
+          echo "Branch - ${{github.ref}}"
+          
