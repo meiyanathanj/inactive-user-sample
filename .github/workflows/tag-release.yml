@@ -32,8 +32,13 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v2
         with:
            # fromTag: v1.8.2
+           # toTag: ${{ steps.tag_version.outputs.latesttag }}
+           configuration: configs/configuration_complex.json
+           owner: mikepenz
+           repo: MaterialDrawer
+           fromTag: v1.8.2
            toTag: ${{ steps.tag_version.outputs.latesttag }}
-          # configuration: "configuration.json"
+           token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
