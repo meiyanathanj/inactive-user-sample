@@ -33,7 +33,7 @@ jobs:
         with:
            # fromTag: v1.8.2
            # toTag: ${{ steps.tag_version.outputs.latesttag }}
-           configuration: configs/configuration_complex.json
+           configuration: configuration_complex.json
            owner: mikepenz
            repo: MaterialDrawer
            fromTag: v2.0.1
