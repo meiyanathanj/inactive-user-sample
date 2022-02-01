@@ -1,8 +1,8 @@
 const fs = require('fs')
   , path = require('path')
   , core = require('@actions/core')
-  , io = require('@actions/io')
-  , json2csv = require('json2csv')
+  // , io = require('@actions/io')
+  // , json2csv = require('json2csv')
   , OrganizationActivity = require('./src/OrgsUserActivity')
   , githubClient = require('./src/githublib/githubClient')
   , dateUtil = require('./src/dateUtil')
@@ -17,16 +17,21 @@ async function run() {
     , organizationinp = getRequiredInput('organization')
     , maxRetries = getRequiredInput('octokit_max_retries')
     , removeFlag =  getRequiredInput('remove_flag')
+    , teamsname =  getRequiredInput('team')
+
   ;
 
+  
+  
 // testing 
-  // const since = '2021-12-01T00:12:23'
+  // const since = ''
   // , days = 30
-  //   , token = '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'
+  //   , token = ''
   //   , outputDir = '/'
-  //   , organizationinp = 'mei-et2,internal-test-organization,mei-et1,mei-et_,mei_et,mei_e.t'
+  //   , organizationinp = 'mei-et'
   //   , maxRetries = 15
   //   , removeFlag =  'No'
+  //   , teamsname = 'PL'
   // ;
 
   
@@ -60,7 +65,7 @@ async function run() {
   }
   
   // Ensure that the output directory exists before we our limited API usage
-  await io.mkdirP(outputDir)
+  // await io.mkdirP(outputDir)
 
   const octokit = githubClient.create(token, maxRetries)
     , orgActivity = new OrganizationActivity(octokit)
@@ -78,7 +83,10 @@ async function run() {
       const userActivity = await orgActivity.getUserActivity(organization, fromDate);
       const jsonresp = userActivity.map(activity => activity.jsonPayload);
       const jsonlist = jsonresp.filter(user => { return user.isActive === false });
-      // console.log(jsonlist)
+      const teamjson = await orgActivity.getTeamActivity(organization, teamsname, jsonlist);
+      const teamjsonlist = teamjson.filter(user => { return user.teamStatus !== 1 });
+
+      console.log(teamjsonlist)
       console.log(`******* RemoveFlag - ${removeFlag}`)
       // const removeduserlist = jsonlist;
       // const removeduserlist = [{login:'1649898',email: '', isActive: false, orgs: 'scb-et', commits: 0, issues: 0, issueComments: 0, prComments: 0},
@@ -87,7 +95,7 @@ async function run() {
                                 {login:'manitest',email: '', isActive: false, orgs: 'internal-test-organization', commits: 0, issues: 0, issueComments: 0, prComments: 0}];
       const removeMulUserRes = await removeMultipleUser(orgActivity, organization, removeduserlist, removeFlag);
       removeMulUserList = [...removeMulUserList, ...removeMulUserRes.removeduserarr];
-      jsonfinallist = [...jsonfinallist, ...jsonlist];
+      jsonfinallist = [...jsonfinallist, ...teamjsonlist];
       rmvconfrm += removeMulUserRes.rmvlen;
     }
   }

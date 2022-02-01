@@ -62,6 +62,19 @@ module.exports = class Organization {
       });
   }
 
+  findTeam(org, team) {
+    return this.octokit.paginate("GET /orgs/:org/teams/:team/members", {org: org, team: team, per_page: 100})
+      .then(members => {
+        return members.map(member => {
+          return {
+            login: member.login,
+            teams: team,
+            orgs: org
+          };
+        });
+      });
+  }
+
   get octokit() {
     return this._octokit;
   }

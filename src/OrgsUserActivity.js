@@ -73,6 +73,47 @@ module.exports = class OrganizationUserActivity {
     return orgsValid;
     
   }
+  
+  async getTeamActivity (organization, teamsname, jsonlist) {
+    const self = this;
+    let teamlist = teamsname.split(',');
+    let TeamLists = [];
+    for(const teamname of teamlist){
+      const Teamvalid = await self.getTeamconversion(teamname);
+      const TeamList = await self.organizationClient.findTeam(organization, Teamvalid);
+      TeamLists = [...TeamLists, ...TeamList];
+    }
+    console.log(TeamLists)
+    let resulttes = [];
+    if(TeamLists.length > 0){
+       resulttes = jsonlist.filter((res1) => {
+        return TeamLists.some((res2)=>{
+          // console.log(res2)
+          
+          if(res1.login === res2.login && res1.orgs === res2.orgs){
+            console.log(`${res1.login} === ${res2.login} && ${res1.orgs} === ${res2.orgs}`)
+            Object.assign(res1, {teamStatus:1});
+          }
+        })
+      })
+    }
+    console.log(jsonlist)
+    console.log("****************json***")
+    
+
+    return jsonlist;
+    
+  }
+
+  async getTeamconversion(team){
+    const slug2 = team
+                    .replace(/[^a-z0-9]+/gi, '-')
+                    .replace(/^-+/, '')
+                    .replace(/^-+$/, '');
+    const finslugid = slug2.toLowerCase();
+    return finslugid;
+  }
+
 }
 
 function generateUserActivityData(data) {

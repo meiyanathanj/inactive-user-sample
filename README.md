@@ -1,6 +1,7 @@
 # inactive-user-sample
 
 
+#test
 
 This action retrun users in your organizations.
 ## Inputs
@@ -25,3 +26,4 @@ uses: actions/inactive-user-sample@v1.0
 with:
   token: 'token'
   orgs-name: 'internal-test'
+test
