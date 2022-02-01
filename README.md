@@ -1,6 +1,8 @@
 # inactive-user-sample
 
 
+#test
+
 This action retrun users in your organizations.
 ## Inputs
 
