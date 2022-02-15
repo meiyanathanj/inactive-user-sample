@@ -12,20 +12,20 @@ on:
         description: 'Tag message'
 #         required: true
 jobs:
-#   build:
-#     name: Create Tag
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
+  build:
+    name: Create Tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
         
-#       - name: Version Generate
-#         id: tag_version
-#         uses: meiyanathanj/create-tag@v1.1.19
-#         with: 
-#           token: ${{ secrets.GITHUB_TOKEN }}
-#           version: ${{github.event.inputs.version}}
-#           message: ${{github.event.inputs.message}}
+      - name: Version Generate
+        id: tag_version
+        uses: meiyanathanj/create-tag@v1.1.19
+        with: 
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: ${{github.event.inputs.version}}
+          message: ${{github.event.inputs.message}}
   
   change-log:
     name: Change log builder
@@ -43,21 +43,21 @@ jobs:
            #owner: meiyanathanj
            #repo: inactive-user-sample
            #fromTag: v2.0.1
-           #toTag: ${{ steps.tag_version.outputs.latesttag }}
+           toTag: ${{ steps.tag_version.outputs.latesttag }}
            token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Build Changelog output
         run: echo "${{ steps.github_release.outputs.changelog }}" 
           
-#       - name: Create a Github Release
-#         id: create_release
-#         uses: actions/create-release@v1
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-#         with:
-#           tag_name: ${{ steps.tag_version.outputs.latesttag }}
-#           release_name: Release ${{ steps.tag_version.outputs.latesttag }}
-#           body: ${{ steps.github_release.outputs.changelog }}
+      - name: Create a Github Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.tag_version.outputs.latesttag }}
+          release_name: Release ${{ steps.tag_version.outputs.latesttag }}
+          body: ${{ steps.github_release.outputs.changelog }}
 
      
       - name: Checking Result
