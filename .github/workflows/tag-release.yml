@@ -38,8 +38,6 @@ jobs:
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v2
         with:
-           # fromTag: v1.8.2
-           # toTag: ${{ steps.tag_version.outputs.latesttag }}
            #configuration: configuration_complex.json
            #owner: meiyanathanj
            #repo: inactive-user-sample
