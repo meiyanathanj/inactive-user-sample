@@ -39,5 +39,5 @@ jobs:
 #           compareLink: true
 #           verbose: true
       - name: "🖨️ Echo changelog to console"
-        run: echo "${{ steps.generate-release-changelog.outputs.changelog }}"
+        run: echo "${{ steps.generate-full-changelog.outputs.changelog }}"
       
