@@ -43,7 +43,7 @@ jobs:
            #owner: meiyanathanj
            #repo: inactive-user-sample
            #fromTag: v2.0.1
-           toTag: ${{ steps.tag_version.outputs.latesttag }}
+           toTag: ${{ steps.build.tag_version.outputs.latesttag }}
            token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Build Changelog output
@@ -55,8 +55,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ steps.tag_version.outputs.latesttag }}
-          release_name: Release ${{ steps.tag_version.outputs.latesttag }}
+          tag_name: ${{ steps.build.tag_version.outputs.latesttag }}
+          release_name: Release ${{ steps.build.tag_version.outputs.latesttag }}
           body: ${{ steps.github_release.outputs.changelog }}
 
      
