@@ -36,7 +36,7 @@ jobs:
         
       - name: Build Changelog
         id: github_release
-        uses: meiyanathanj/release-notes@v1  
+        uses: meiyanathanj/release-notes@v1.0.0  
 #         uses: mikepenz/release-changelog-builder-action@v2
         with:
            #configuration: configuration_complex.json
