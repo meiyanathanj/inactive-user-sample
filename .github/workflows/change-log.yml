@@ -41,18 +41,15 @@ jobs:
       - name: "🖨️ Echo changelog to console"
         run: echo "${{ steps.generate-full-changelog.outputs.changelog }}"
         
-      - name: "🖨️ Echo ref"
-        run: echo "${{ github.ref }}"
-        
            
-      - name: Create a Github Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: "2.2.4"
-          release_name: "Release 2.2.4"
-          body: ${{ steps.generate-full-changelog.outputs.changelog }}
+#       - name: Create a Github Release
+#         id: create_release
+#         uses: actions/create-release@v1
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+#         with:
+#           tag_name: "2.2.4"
+#           release_name: "Release 2.2.4"
+#           body: ${{ steps.generate-full-changelog.outputs.changelog }}
 
       
