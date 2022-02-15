@@ -22,14 +22,14 @@ jobs:
           stripGeneratorNotice: "true"
 #           headerLabel: "# 📑 Changelog"
 #           breakingLabel: '### 💥 Breaking'
-#           enhancementLabel: '### 🚀 Enhancements'
-#           bugsLabel: '### 🐛 Bug fixes'
+          enhancementLabel: '### 🚀 Enhancements'
+          bugsLabel: '### 🐛 Bug fixes'
 #           deprecatedLabel: '### ⚠️ Deprecations'
 #           removedLabel: '### 🔥 Removals'
 #           securityLabel: '### 🛡️ Security'
 #           issuesLabel: '### 📁 Other issues'
 #           prLabel: '### 📁 Other pull requests'
-          addSections: '{"features":{"prefix":"### 📖 Features","labels":["feature"]},"tests":{"prefix":"### ✅ Testing","labels":["test"]},"dependencies":{"prefix":"### ✅ Dependencies","labels":["dependencies"]}}'
+          addSections: '{"feature":{"prefix":"### 📖 feature","labels":["feature"]},"test":{"prefix":"### ✅ Testing","labels":["test"]},"dependencies":{"prefix":"### ✅ Dependencies","labels":["dependencies"]}}'
 #           issues: true
 #           issuesWoLabels: true
 #           pullRequests: true
