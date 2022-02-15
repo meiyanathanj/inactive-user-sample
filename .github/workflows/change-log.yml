@@ -20,7 +20,7 @@ jobs:
           onlyLastTag: "true"
           stripHeaders: "true"
           stripGeneratorNotice: "true"
-          headerLabel: "# 📑 Changelog"
+#           headerLabel: "# 📑 Changelog"
           breakingLabel: '### 💥 Breaking'
           enhancementLabel: '### 🚀 Enhancements'
           bugsLabel: '### 🐛 Bug fixes'
@@ -29,10 +29,10 @@ jobs:
           securityLabel: '### 🛡️ Security'
           issuesLabel: '### 📁 Other issues'
           prLabel: '### 📁 Other pull requests'
-          addSections: '{"documentation":{"prefix":"### 📖 Documentation","labels":["documentation"]},"tests":{"prefix":"### ✅ Testing","labels":["tests"]}}'
+#           addSections: '{"documentation":{"prefix":"### 📖 Documentation","labels":["documentation"]},"tests":{"prefix":"### ✅ Testing","labels":["tests"]}}'
 #           issues: true
 #           issuesWoLabels: true
-          pullRequests: false
+#           pullRequests: true
 #           prWoLabels: true
           author: false
 #           unreleased: true
