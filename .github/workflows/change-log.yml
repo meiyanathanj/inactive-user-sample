@@ -34,7 +34,7 @@ jobs:
 #           issuesWoLabels: true
 #           pullRequests: true
 #           prWoLabels: true
-#           author: true
+          author: false
 #           unreleased: true
 #           compareLink: true
 #           verbose: true
