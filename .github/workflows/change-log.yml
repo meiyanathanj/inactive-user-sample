@@ -22,8 +22,8 @@ jobs:
           stripGeneratorNotice: "true"
 #           headerLabel: "# 📑 Changelog"
 #           breakingLabel: '### 💥 Breaking'
-          enhancementLabel: '### 🚀 Enhancements'
-          bugsLabel: '### 🐛 Bug fixes'
+#           enhancementLabel: '### 🚀 Enhancements'
+#           bugsLabel: '### 🐛 Bug fixes'
 #           deprecatedLabel: '### ⚠️ Deprecations'
 #           removedLabel: '### 🔥 Removals'
 #           securityLabel: '### 🛡️ Security'
